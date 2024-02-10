@@ -18,10 +18,30 @@ public class HibernateUtil {
 
     static {
         try {
+            // StandardServiceRegistry sınıfı, Hibernate'in çeşitli hizmetlerini
+			// yapılandırmak ve yönetmek için kullanılır.
+			
+			// Hizmet Kaynaklarını Yönetme: Hibernate, bir dizi hizmet kullanır. Örneğin,
+			// bağlantı sağlama, sorgu yürütme, transaksiyon yönetimi gibi hizmetler.
+			// StandardServiceRegistry sınıfı, bu hizmetleri yapılandırma ve yönetme
+			// görevini üstlenir.
+			
+			//Yapılandırma Ayarlarını Tutma: Hibernate'in yapılandırma ayarları, özellikle 
+			//veritabanı bağlantı bilgileri, dialect (veritabanı türüne özgü SQL dil desteği), 
+			//cache ayarları gibi birçok özelliği içerir. Bu ayarları yönetmek ve sınıflar arasında 
+			//iletmek için StandardServiceRegistry kullanılır.
+			
+			//SessionFactory Oluşturma: Hibernate'in temel nesnesi olan SessionFactory'yi oluşturmak 
+			//için kullanılır. SessionFactory, Hibernate'in nesne tabanlı modelleme ve veritabanı 
+			//arasındaki köprüdür.
             StandardServiceRegistry ssr = new StandardServiceRegistryBuilder()
                     .applySettings(getHibernateConfig())
                     .build();
-
+//Metadata, Hibernate tarafından yönetilen nesne modelini ve bu nesne modelini veritabanı 
+			//şemasına nasıl eşleyeceğini tanımlar. Bu, Java sınıflarının ve veritabanı tablolarının 
+			//arasındaki ilişkiyi belirlemek ve Hibernate'in bu iki dünya arasında etkileşimi sağlamak 
+			//için kullanılır.
+			
             Metadata meta = new MetadataSources(ssr)
                     .addAnnotatedClass(Course.class)
                     .addAnnotatedClass(Student.class)
